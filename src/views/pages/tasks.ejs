@@ -20,6 +20,9 @@
             <% if (task.description) { %>
               <p class="task-desc"><%= task.description %></p>
             <% } %>
+            <% if (task.created_at) { %>
+              <span class="task-date"><%= task.created_at %></span>
+            <% } %>
             <% if (task.file) { %>
               <span class="task-file">📎 <a href="/uploads/<%= task.file %>"><%= task.file %></a></span>
             <% } %>

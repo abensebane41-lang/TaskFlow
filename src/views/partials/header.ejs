@@ -13,6 +13,7 @@
     <div class="navbar-inner">
       <a href="/" class="navbar-brand">TaskFlow</a>
       <div class="navbar-links">
+        <button class="theme-toggle" id="themeToggle" title="Toggle theme">🌙</button>
         <% if (user) { %>
           <span class="username"><%= user.name %></span>
           <a href="/tasks">My Tasks</a>
