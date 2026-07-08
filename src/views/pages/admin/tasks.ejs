@@ -1,0 +1,41 @@
+<%- include('../../partials/header', { title: 'All Tasks' }) %>
+
+<div class="container">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+    <h1 class="page-title" style="margin-bottom:0">All Tasks</h1>
+    <a href="/admin" class="btn btn-secondary">← Back</a>
+  </div>
+
+  <div class="table-wrap">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Owner</th>
+          <th>Status</th>
+          <th>Created</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% tasks.forEach(t => { %>
+          <tr>
+            <td style="color:var(--color-text-muted)"><%= t.id %></td>
+            <td><strong><%= t.title %></strong></td>
+            <td><%= t.username %></td>
+            <td><span class="status <%= t.status === 1 ? 'done' : 'pending' %>"><%= t.status === 1 ? 'Done' : 'Pending' %></span></td>
+            <td style="color:var(--color-text-muted);font-size:0.85rem"><%= t.created_at %></td>
+            <td>
+              <form action="/admin/tasks/<%= t.id %>/delete" method="POST" style="display:inline">
+                <button type="submit" class="btn-sm btn-danger" onclick="return confirm('Delete this task?')">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%- include('../../partials/footer') %>

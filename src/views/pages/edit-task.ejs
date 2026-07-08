@@ -1,0 +1,34 @@
+<%- include('../partials/header', { title: 'Edit Task' }) %>
+
+<div class="container">
+  <h1 class="page-title">Edit Task</h1>
+
+  <form action="/tasks/<%= task.id %>/update" method="POST" enctype="multipart/form-data" class="task-form">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" name="title" id="title" value="<%= task.title %>" required>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea name="description" id="description" rows="4"><%= task.description %></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="file">Attachment</label>
+      <input type="file" name="file" id="file">
+      <% if (task.file) { %>
+        <p style="margin-top:6px;font-size:0.85rem;color:var(--color-text-secondary)">
+          Current: <a href="/uploads/<%= task.file %>"><%= task.file %></a>
+        </p>
+      <% } %>
+    </div>
+
+    <div style="display:flex;gap:12px">
+      <button type="submit" class="btn">Save Changes</button>
+      <a href="/tasks" class="btn btn-secondary">Cancel</a>
+    </div>
+  </form>
+</div>
+
+<%- include('../partials/footer') %>

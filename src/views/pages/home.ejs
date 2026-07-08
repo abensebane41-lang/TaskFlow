@@ -1,0 +1,21 @@
+<%- include('../partials/header', { title: 'TaskFlow - Home' }) %>
+
+<div class="hero">
+  <h1>Welcome to TaskFlow</h1>
+  <p class="subtitle">The simple task manager for developers who hate complexity.</p>
+
+  <% if (user) { %>
+    <p style="color:var(--color-text-secondary);margin-bottom:20px">Logged in as <strong><%= user.name %></strong></p>
+    <div class="actions">
+      <a href="/tasks" class="btn">My Tasks</a>
+      <a href="/logout" class="btn btn-secondary">Logout</a>
+    </div>
+  <% } else { %>
+    <div class="actions">
+      <a href="/login" class="btn">Login</a>
+      <a href="/register" class="btn btn-secondary">Register</a>
+    </div>
+  <% } %>
+</div>
+
+<%- include('../partials/footer') %>

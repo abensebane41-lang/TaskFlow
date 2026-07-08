@@ -1,0 +1,24 @@
+<%- include('../partials/header', { title: 'Login' }) %>
+
+<div class="container auth-page">
+  <div>
+    <h1 class="page-title text-center">Welcome back</h1>
+    <p class="page-subtitle text-center">Sign in to your account</p>
+
+    <form action="/login" method="POST" class="task-form">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="you@example.com" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Enter your password" required>
+      </div>
+      <button type="submit" class="btn" style="width:100%;justify-content:center">Sign in</button>
+    </form>
+
+    <p>Don't have an account? <a href="/register">Create one</a></p>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

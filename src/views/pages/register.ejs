@@ -1,0 +1,28 @@
+<%- include('../partials/header', { title: 'Register' }) %>
+
+<div class="container auth-page">
+  <div>
+    <h1 class="page-title text-center">Create an account</h1>
+    <p class="page-subtitle text-center">Get started with TaskFlow</p>
+
+    <form action="/register" method="POST" class="task-form">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" placeholder="Choose a username" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="you@example.com" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password (min 6 characters)</label>
+        <input type="password" name="password" id="password" placeholder="Create a strong password" required>
+      </div>
+      <button type="submit" class="btn" style="width:100%;justify-content:center">Create account</button>
+    </form>
+
+    <p>Already have an account? <a href="/login">Sign in</a></p>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

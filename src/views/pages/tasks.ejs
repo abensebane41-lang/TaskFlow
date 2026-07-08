@@ -1,0 +1,42 @@
+<%- include('../partials/header', { title: 'Tasks' }) %>
+
+<div class="container">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+    <h1 class="page-title" style="margin-bottom:0">My Tasks</h1>
+    <a href="/tasks/new" class="btn">+ New Task</a>
+  </div>
+
+  <% if (tasks.length === 0) { %>
+    <div class="empty-state">
+      <p>No tasks yet.</p>
+      <a href="/tasks/new" class="btn">Create your first task</a>
+    </div>
+  <% } else { %>
+    <ul class="task-list">
+      <% tasks.forEach(task => { %>
+        <li class="task-item">
+          <div class="task-content">
+            <strong><%= task.title %></strong>
+            <% if (task.description) { %>
+              <p class="task-desc"><%= task.description %></p>
+            <% } %>
+            <% if (task.file) { %>
+              <span class="task-file">📎 <a href="/uploads/<%= task.file %>"><%= task.file %></a></span>
+            <% } %>
+          </div>
+          <span class="status <%= task.status === 1 ? 'done' : 'pending' %>">
+            <%= task.status === 1 ? 'Done' : 'Pending' %>
+          </span>
+          <div class="task-actions">
+            <a href="/tasks/<%= task.id %>/edit" class="btn-sm">Edit</a>
+            <form action="/tasks/<%= task.id %>/delete" method="POST" style="display:inline">
+              <button type="submit" class="btn-sm btn-danger" onclick="return confirm('Delete this task?')">Delete</button>
+            </form>
+          </div>
+        </li>
+      <% }) %>
+    </ul>
+  <% } %>
+</div>
+
+<%- include('../partials/footer') %>
