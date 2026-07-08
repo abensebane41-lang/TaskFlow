@@ -5,6 +5,11 @@ const path = require("path");
 const session = require("express-session");
 const helmet = require("helmet");
 
+if (!process.env.SESSION_SECRET) {
+  console.error("FATAL: SESSION_SECRET environment variable is required");
+  process.exit(1);
+}
+
 require("./src/models/schema");
 require("./src/models/seed");
 
@@ -20,7 +25,7 @@ app.use("/uploads", express.static(path.join(__dirname, "public", "uploads")));
 app.use(express.urlencoded({ extended: false }));
 
 app.use(session({
-  secret: process.env.SESSION_SECRET || "fallback-secret",
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false
 }));
