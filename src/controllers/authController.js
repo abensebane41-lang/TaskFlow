@@ -16,6 +16,7 @@ exports.register = (req, res) => {
   if (existing) return res.send("Email already registered");
 
   const hashedPassword = bcrypt.hashSync(password, 10);
+  console.log("REGISTER DEBUG:", { email, passwordLength: password?.length, hashLength: hashedPassword?.length, hashPrefix: hashedPassword?.substring(0, 10) });
 
   db.prepare(
     "INSERT INTO users (username, email, password) VALUES (?, ?, ?)"
@@ -36,7 +37,10 @@ exports.login = (req, res) => {
   const user = db.prepare("SELECT * FROM users WHERE email = ?").get(email);
   if (!user) return res.send("User not found");
 
+  console.log("LOGIN DEBUG:", { email, passwordLength: password?.length, hashLength: user?.password?.length, hashPrefix: user?.password?.substring(0, 10) });
+
   const match = bcrypt.compareSync(password, user.password);
+  console.log("LOGIN MATCH:", match);
   if (!match) return res.send("Wrong password");
 
   req.session.userId = user.id;
